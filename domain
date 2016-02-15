@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+   ServerName domain
+   ServerAlias www.domain
+   CustomLog "/var/log/httpd/domain_access.log" common
+   ErrorLog /var/log/httpd/domain_error.log
+   DocumentRoot "/var/www/domain/public_html"
+<Directory "/var/www/domain/public_html">
+   Options All
+   AllowOverride AuthConfig
+   Order allow,deny
+   Allow from all
+</Directory>
+</VirtualHost>
+
