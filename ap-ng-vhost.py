@@ -44,11 +44,13 @@ def ap():
     os.system('/etc/init.d/httpd start')
     time.sleep(3)
     apidfile = '/var/run/httpd/httpd.pid'
+
     if os.path.isfile(apidfile):
         print('\nApache web server installed and virtual host configured.')
     else:
         print('There is problem when apache web server tired to start')
         sys.exit()
+
     print('\n\n################################################################')
     print('1. For install and configure PHP and MySQL please write 1 and click to ENTER button.')
     print('2. For exit from script, plase write 2 and click the ENTER button.')
@@ -67,6 +69,7 @@ def ap():
         os.system('service httpd restart')
         print('\n\n')
         mpidfile = '/var/run/mysqld/mysqld.pid'
+
         if os.path.isfile(mpidfile):
             print('Configure MySQL security.....')
             time.sleep(3)
@@ -74,6 +77,7 @@ def ap():
         else:
             print('MySQL is not working')
             sys.exit()
+
         time.sleep(3)
         print('MySQL already configured..........')
         sqlroot = raw_input('Enter MySQL root user password: ')
@@ -85,6 +89,7 @@ def ap():
         os.system('mysql -u root -p%s -e "FLUSH PRIVILEGES;"' %(sqlroot))
 
         replacements = {'saytdb':newdb, 'saytuser':newdbuser, 'freebsd':newdbpass}
+
         with open('/var/www/'+arg1+'/public_html/index.php', 'w') as outfile:
             with open(os.getcwd()+'/tempindex.php', 'r') as infile:
                 for line in infile:
@@ -109,6 +114,7 @@ def ng():
     os.system('touch /var/www/'+arg1+'/public_html/index.html')
 
     nghtreps = {'ngsec.lan':arg1}
+
     with open('/var/www/'+arg1+'/public_html/index.html', 'w') as outfile:
         with open(os.getcwd()+'/ngindex.html', 'r') as infile:
             for line in infile:
@@ -119,6 +125,7 @@ def ng():
     os.system('touch /etc/nginx/conf.d/'+arg1+'.conf')
 
     ngvhcnfreps = {'ngsec.lan':arg1}
+
     with open('/etc/nginx/conf.d/'+arg1+'.conf', 'w') as outfile:
         with open(os.getcwd()+'/ngsec.conf', 'r') as infile:
             for line in infile:
@@ -132,6 +139,7 @@ def ng():
     os.system('/bin/cp -f `pwd`/nginx.conf /etc/nginx/')
 
     ngpfile = '/var/run/nginx.pid'
+
     if os.path.isfile(ngpfile):
         print('\nNginx web server installed and virtual host created.\n\n')
     else:
@@ -156,6 +164,7 @@ def ng():
         os.system('service nginx restart')
         print('\n\n')
         mpidfile = '/var/run/mysqld/mysqld.pid'
+
         if os.path.isfile(mpidfile):
             print('Configure MySQL security.....')
             time.sleep(3)
@@ -163,6 +172,7 @@ def ng():
         else:
             print('MySQL is not working')
             sys.exit()	
+
         time.sleep(3)
         print('MySQL already configured..........')
         sqlroot = raw_input('Enter MySQL root user password: ')
@@ -176,6 +186,7 @@ def ng():
         os.system('/bin/cp -f `pwd`/nginx.conf /etc/nginx/')
 
         dbreps = {'saytdb':newdb, 'saytuser':newdbuser, 'freebsd':newdbpass}
+
         with open('/var/www/'+arg1+'/public_html/index.php', 'w') as outfile:
             with open(os.getcwd()+'/tempindex.php', 'r') as infile:
                 for line in infile:
@@ -184,6 +195,7 @@ def ng():
                     outfile.write(line)
 
         rplace = {'ngphp.lan':arg1}
+
         with open('/etc/nginx/conf.d/'+arg1+'.conf', 'w') as outfile:
             with open(os.getcwd()+'/ngphp.conf', 'r') as infile:
                 for line in infile:
