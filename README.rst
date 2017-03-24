@@ -13,7 +13,7 @@ Main script is **ap-ng-vhost.py**
     3. Download all files to the Linux server and execute ap-ng-vhost.py script.
 
 
-* For test virtual domain name just add your server IP and virtual name to **"C:\windows\system32\drivers\etc\hosts"** file for Windows or **/etc/hosts** file for Linux as follows::
+* For test virtual domain name just add your server IP and virtual name to **C:\\windows\\system32\\drivers\\etc\\hosts** file for Windows or **/etc/hosts** file for Linux as follows::
   
     172.16.100.10 unix.com
 
